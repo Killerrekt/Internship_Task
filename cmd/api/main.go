@@ -7,6 +7,7 @@ import (
 
 func main() {
 	database.ConnectDB()
+	database.RunMigration()
 
 	router := gin.Default()
 	router.GET("/ping", func(c *gin.Context) {
