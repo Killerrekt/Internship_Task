@@ -14,3 +14,13 @@ func GetAllSubject() ([]model.Subject, error) {
 	err := database.DB.Model(&model.Subject{}).Find(&data).Error
 	return data, err
 }
+
+func CheckSubjects(subs []string) bool {
+	var count int64
+	err := database.DB.Model(&model.Subject{}).Where("name in ?", subs).Count(&count).Error
+	if err != nil {
+		return false
+	} else {
+		return count == int64(len(subs))
+	}
+}

@@ -14,6 +14,8 @@ func main() {
 
 	route.AuthRoute(router)
 	route.SubjectRoute(router)
+	route.TutorRoute(router)
+	route.BookingRoute(router)
 
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{

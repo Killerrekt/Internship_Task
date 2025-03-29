@@ -1,8 +1,6 @@
 package model
 
 import (
-	"time"
-
 	"github.com/google/uuid"
 )
 
@@ -14,6 +12,6 @@ type Booking struct {
 	Tutor       User      `gorm:"foreignKey:TutorID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
 	SubjectID   uuid.UUID `gorm:"type:uuid"`
 	Subject     Subject   `gorm:"foreignKey:SubjectID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
-	BookingTime time.Time
+	BookingTime string
 	Status      string `gorm:"text"`
 }
