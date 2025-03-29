@@ -11,3 +11,7 @@ type LoginReq struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
+
+type AddSubjectReq struct {
+	Name string `json:"name"`
+}

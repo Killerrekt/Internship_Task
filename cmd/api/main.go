@@ -13,6 +13,7 @@ func main() {
 	router := gin.Default()
 
 	route.AuthRoute(router)
+	route.SubjectRoute(router)
 
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
