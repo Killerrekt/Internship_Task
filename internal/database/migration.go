@@ -23,4 +23,6 @@ func RunMigration() {
 	if err != nil {
 		log.Fatalln("Failed to create Booking table")
 	}
+
+	log.Println("Migration done Successfully 🚀")
 }
