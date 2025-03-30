@@ -9,5 +9,5 @@ import (
 func BookingRoute(router *gin.Engine) {
 	router.POST("/bookings", middleware.Protected(), controller.BookTutor)
 	router.GET("/bookings", middleware.Protected(), controller.GetBooking)
-	router.PATCH("/bookings", controller.UpdateBooking)
+	router.PATCH("/bookings/:id/status", middleware.Protected(), middleware.CheckRole("admin"), controller.UpdateBooking)
 }

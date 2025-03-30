@@ -7,6 +7,6 @@ import (
 )
 
 func TutorRoute(router *gin.Engine) {
-	router.POST("/tutor/profile", middleware.Protected(), controller.TutorDetails)
+	router.POST("/tutor/profile", middleware.Protected(), middleware.CheckRole("tutor"), controller.TutorDetails)
 	router.GET("/tutor", controller.GetTutorBySubjects)
 }

@@ -57,7 +57,13 @@ func GetBooking(c *gin.Context) {
 func UpdateBooking(c *gin.Context) {
 	var req model.UpdateBookingReq
 
-	err := c.ShouldBind(&req)
+	err := c.ShouldBindUri(&req)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, model.Response{Message: err.Error(), Status: false})
+		return
+	}
+
+	err = c.ShouldBind(&req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, model.Response{Message: err.Error(), Status: false})
 		return

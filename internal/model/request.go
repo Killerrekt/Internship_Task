@@ -30,6 +30,6 @@ type Bookingreq struct {
 }
 
 type UpdateBookingReq struct {
-	Id     uuid.UUID `json:"id"`
-	Status string    `json:"status"`
+	Id     string `uri:"id"`
+	Status string `json:"status"`
 }

@@ -12,17 +12,17 @@ import (
 
 func TutorDetails(c *gin.Context) {
 	email := c.GetString("email")
-	role := c.GetString("role")
-
-	if role != "tutor" {
-		c.JSON(http.StatusUnauthorized, model.Response{Message: "Unathorized", Status: false})
-		return
-	}
 
 	var req model.AddTutorDetail
 	err := c.ShouldBind(&req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, model.Response{Message: err.Error(), Status: false})
+		return
+	}
+
+	check := query.CheckSubjects(req.SubjectName)
+	if !check {
+		c.JSON(http.StatusPreconditionFailed, model.Response{Message: "Not all subject are in DB", Status: false})
 		return
 	}
 

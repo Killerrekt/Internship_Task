@@ -35,7 +35,7 @@ func Protected() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		tokenString, err := extractTokenFromHeader(c)
 		if err != nil {
-			c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+			c.JSON(http.StatusUnauthorized, model.Response{Message: err.Error(), Status: false})
 			c.Abort()
 			return
 		}
@@ -46,7 +46,7 @@ func Protected() gin.HandlerFunc {
 			return []byte(os.Getenv("JWT_SECRET")), nil
 		})
 		if err != nil {
-			c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+			c.JSON(http.StatusUnauthorized, model.Response{Message: err.Error(), Status: false})
 			c.Abort()
 			return
 		}
@@ -54,7 +54,7 @@ func Protected() gin.HandlerFunc {
 		if claims, ok := token.Claims.(jwt.MapClaims)["sub"]; ok && token.Valid {
 			c.Set("email", claims)
 		} else {
-			c.JSON(http.StatusUnauthorized, gin.H{"error": "invalid token"})
+			c.JSON(http.StatusUnauthorized, model.Response{Message: "invalid token", Status: false})
 			c.Abort()
 			return
 		}
@@ -62,7 +62,7 @@ func Protected() gin.HandlerFunc {
 			c.Set("role", claims)
 			c.Next()
 		} else {
-			c.JSON(http.StatusUnauthorized, gin.H{"error": "invalid token"})
+			c.JSON(http.StatusUnauthorized, model.Response{Message: "invalid token", Status: false})
 			c.Abort()
 			return
 		}
