@@ -31,7 +31,7 @@ $ docker compose up --build
 
 ## API Endpoints
 
-[Postman Documentation]{https://documenter.getpostman.com/view/26244894/2sB2cPjkco}
+[Postman Documentation](https://documenter.getpostman.com/view/26244894/2sB2cPjkco)
 
 | route                      | description                               |
 | -------------------------- | ----------------------------------------- |
