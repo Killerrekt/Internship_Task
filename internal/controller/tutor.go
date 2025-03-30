@@ -14,7 +14,7 @@ func TutorDetails(c *gin.Context) {
 	email := c.GetString("email")
 
 	var req model.AddTutorDetail
-	err := c.ShouldBind(&req)
+	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, model.Response{Message: err.Error(), Status: false})
 		return

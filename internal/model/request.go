@@ -3,19 +3,19 @@ package model
 import "github.com/google/uuid"
 
 type RegisterReq struct {
-	Name     string `json:"name"`
-	Email    string `json:"email"`
-	Password string `json:"password"`
-	Role     string `json:"role"`
+	Name     string `json:"name" binding:"required"`
+	Email    string `json:"email" binding:"required"`
+	Password string `json:"password" binding:"required"`
+	Role     string `json:"role" binding:"required"`
 }
 
 type LoginReq struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
+	Email    string `json:"email" binding:"required"`
+	Password string `json:"password" binding:"required"`
 }
 
 type AddSubjectReq struct {
-	Name string `json:"name"`
+	Name string `json:"name" binding:"required"`
 }
 
 type AddTutorDetail struct {
@@ -24,12 +24,12 @@ type AddTutorDetail struct {
 }
 
 type Bookingreq struct {
-	TutorId     uuid.UUID `json:"tutor_id"`
-	Subject     uuid.UUID `json:"subject_id"`
-	BookingTime string    `json:"booking_time"`
+	TutorId     uuid.UUID `json:"tutor_id" binding:"required"`
+	Subject     uuid.UUID `json:"subject_id" binding:"required"`
+	BookingTime string    `json:"booking_time" binding:"required"`
 }
 
 type UpdateBookingReq struct {
-	Id     string `uri:"id"`
-	Status string `json:"status"`
+	Id     string `uri:"id" binding:"required"`
+	Status string `json:"status" binding:"required"`
 }

@@ -15,7 +15,7 @@ import (
 
 func Register(c *gin.Context) {
 	var req model.RegisterReq
-	err := c.ShouldBind(&req)
+	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, model.Response{Message: err.Error(), Status: false})
 		return
@@ -30,7 +30,7 @@ func Register(c *gin.Context) {
 
 func Login(c *gin.Context) {
 	var req model.LoginReq
-	err := c.ShouldBind(&req)
+	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, model.Response{Message: err.Error(), Status: false})
 		return
